@@ -1,7 +1,12 @@
 import numpy as np
+import random
+
+x = int(input("수를 입력하세요 : "))
+l = list()
+for i in range(x):
+    l.append(random.randint(1, 100))
+
+    v = np.array(l, dtype='int16')
+    print(v)
 
 
-# v = np.array([1 ,3 ,-9 , 2], dtype='int64')
-v = np.array([[1 ,3 ,-9 , 2],
-             [71, 13, -22, 7]])# dtype='int64')
-print(v.ndim, v.shape, v.data, v.dtype, v.strides)
