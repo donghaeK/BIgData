@@ -2,7 +2,11 @@ import numpy as np
 import tkinter as tk  # Built in GUI
 from tkinter import messagebox  # pop-up window
 
-def click_button(ev):
+def press_enter_key(ev):
+    click_button()
+
+
+def click_button():
     try:
         r, c = map(int, en_row_column.get().split())  # spacebar
         matrix = np.random.randint(1, 101, size=(r, c))
@@ -24,6 +28,6 @@ lbl_result.pack()
 en_row_column.pack(fill='x')
 btn_click.pack(fill='x')
 
-en_row_column.bind("<Return>", click_button)
+en_row_column.bind("<Return>", press_enter_key)
 
 window.mainloop()
