@@ -7,8 +7,8 @@ def click_button():
         r = int(en_row.get())
         c = int(en_column.get())
         rows = list()
-        for i in range(c):
-            rows.append([random.randint(1, 100) for i in range(r)])
+
+        rows=[[random.randint(1, 100) for i in range(r)]for i in range(c)]
         print(rows)
 
 
