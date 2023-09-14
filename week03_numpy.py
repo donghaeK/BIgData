@@ -1,15 +1,21 @@
 import numpy as np
-import random
+# import random
 import tkinter as tk  # Built in GUI
 from tkinter import messagebox  # pop-up window
+
+def create_2darray(row, col):
+    return np.random.randint(1, 101, size=(row, col))
+
+
 
 
 def click_button():
     try:
         r, c = map(int, en_row_column.get().split())  # spacebar
 
-        rows = [[random.randint(1, 100) for i in range(r)] for i in range(c)]
-        matrix = np.array(rows, dtype='int16')
+        # rows = [[random.randint(1, 100) for i in range(r)] for i in range(c)]
+        # matrix = np.array(create_2darray(r,c), dtype='int16')
+        matrix = create_2darray(r, c)
         lbl_result.config(text=matrix)
     except ValueError as err:
         lbl_result.config(text=f"입력 값이 없습니다.\n{err}")
@@ -17,7 +23,7 @@ def click_button():
 
 
 window = tk.Tk()
-window.title('numpy gui version v1.3')
+window.title('numpy gui version v1.5')
 window.geometry('300x150')
 
 # create widget
