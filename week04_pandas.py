@@ -1,34 +1,39 @@
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import pandas as pd
+import tkinter as tk
 from sklearn.linear_model import LinearRegression
 
-# csv file download and prepare the data
-# data_root = "https://github.com/ageron/data/raw/main/"
-life_satisfaction = pd.read_csv("https://github.com/ageron/data/raw/main/" + "lifesat/lifesat.csv")
-# print(life_satisfaction.head(5))
-# print(life_satisfaction.shape)
-# print(life_satisfaction.describe())
 
-X = life_satisfaction[["GDP per capita (USD)"]].values #return 2darray
-y = life_satisfaction[["Life satisfaction"]].values #return 2darray
+def predict_life_satisfaction():
+    x = int(en_GDP_per_capita.get())
+    X_new = [[x]]
+
+    life_satisfaction = pd.read_csv("https://github.com/ageron/data/raw/main/lifesat/lifesat.csv")
+    X = life_satisfaction[["GDP per capita (USD)"]].values  # return 2d array
+    y = life_satisfaction[["Life satisfaction"]].values  # return 2d array
+
+    # life_satisfaction.plot(kind='scatter', grid=True, x="GDP per capita (USD)", y="Life satisfaction")
+    # plt.axis([23500, 62500, 4, 9])
+    # plt.show()
+
+    model = LinearRegression()
+    model.fit(X, y)
+
+    # predict new GDP per capita (South Korea 2020)
+    lbl_life_satisfaction.config(text=f"해당 국가의 삶의 만족도는 {model.predict(X_new)}로 예상합니다.")
 
 
-# print(X)
-# print(y)
+if __name__ == "__main__":
+    window = tk.Tk()
+    window.title("삶의 만족도 예측 프로그램 v0.1")
+    window.geometry("400x150")
 
+    lbl_life_satisfaction = tk.Label(window, text="아래 입력상자에 삶의 만족도를 알고 싶은\n국가의 1인당 GDP값을 입력해주세요")
+    en_GDP_per_capita = tk.Entry(window)
+    btn_predict = tk.Button(window, text="예측", command=predict_life_satisfaction)
 
-# draw scatter diagram
-life_satisfaction.plot(kind='scatter', grid=True, x="GDP per capita (USD)", y="Life satisfaction")
-plt.axis([23_500, 62_500, 4, 9])
-plt.show()
-#
-# model choice
-model = LinearRegression()
-#
-# # Train the model
-model.fit(X, y)
+    lbl_life_satisfaction.pack()
+    en_GDP_per_capita.pack(fill='x')
+    btn_predict.pack(fill='x')
 
-# predict new GDP per capita (South Korea 2020)
-X_new = [[31700]]  # South Korea' GDP per capita in 2020
-print(model.predict(X_new))
-# outputs [[6.30165767]]
+    window.mainloop()
