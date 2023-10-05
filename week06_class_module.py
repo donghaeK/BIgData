@@ -25,7 +25,7 @@ def predict_life_satisfaction():
 
 if __name__ == "__main__":
     window = tk.Tk()
-    window.title("삶의 만족도 예측 프로그램 v0.2")
+    window.title("삶의 만족도 예측 프로그램 v0.24")
     window.geometry("400x150")
 
     lbl_life_satisfaction = tk.Label(window, text="아래 입력상자에 삶의 만족도를 알고 싶은\n국가의 1인당 GDP값을 입력해주세요")
