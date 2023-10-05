@@ -1,6 +1,22 @@
 import numpy as np
 
 
+class KNeighborsRegressor:
+    def __init__(self, n_neighbors):
+        self.n_neighbors = n_neighbors
+
+    def fit(self, X_train, y_train):
+        self.X_train = X_train
+        self.y_train = y_train
+
+    def predict(self, X_test):
+        predictions = []
+        for X_test in X_test:
+            distances = np.sqrt(np.sum((X_test-self.X_train)**2, axis=1))
+            indices = np.argsort(distances)[:self.n_neighbors]
+            prediction = np.mean(self.y_train[indices])
+            predictions.append(prediction)
+            return np.array(prediction).reshape(-1, 1)
 class LinearRegression:
     def __init__(self):
         self.slope = None

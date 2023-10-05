@@ -1,8 +1,8 @@
 # import matplotlib.pyplot as plt
 import pandas as pd
 import tkinter as tk
-from sklearn.neighbors import KNeighborsRegressor
-
+# from sklearn.neighbors import KNeighborsRegressor
+import tglearn
 
 def predict_life_satisfaction(*ev):
     x = int(en_GDP_per_capita.get())
@@ -16,7 +16,7 @@ def predict_life_satisfaction(*ev):
     # plt.axis([23500, 62500, 4, 9])
     # plt.show()
 
-    model = KNeighborsRegressor(n_neighbors=3)
+    model = tglearn.KNeighborsRegressor(3)
     model.fit(X, y)
 
     # predict new GDP per capita (South Korea 2020)
