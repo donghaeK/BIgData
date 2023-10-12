@@ -1,26 +1,13 @@
+import urllib.request
 from bs4 import BeautifulSoup
 
-html = """
-<html>
-<head>
-<title>스크레이핑 실습</title>
-</head>
-<body>
-<a href="http:///www.daelim.ac.kr">대림대학교</a><br>
-<a href="http:///www.harvard.edu">하버드대학교</a>
-<h1>daelimUniversity</h1>
-<p>웹 스크레이핑</p>
-<p>파이썬 기본 문법, 넘파이, 판다스, 맷플롯립, 사이킷런, GUI ... </p>
-</body>
-</html>
-"""
+api = 'https://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp'
+urls = urllib.request.urlopen(api).read()
+soup = BeautifulSoup(urls, 'html.parser')
 
-soup = BeautifulSoup(html, 'html.parser')
-urls = soup.find_all("a")
+cities = soup.find_all("city")
+data = soup.find_all("data")
 
-for url in urls:
-    print(f'{url.string}의 url주소는 {url.attrs["href"]}입니다!')
-    # univ = url.string
-    # link = url.attrs['href']
-    # print(univ)
-    # print(link)
+for i in range(len(cities)):
+    print(f'{cities[i].string}의 중기 예보 첫 번째 날씨는 {data[i*13].find("wf").string}입니다.')
+print(len(cities), len(data))
