@@ -2,7 +2,7 @@ import numpy as np
 
 
 class KNeighborsRegressor:
-    def __init__(self, n_neighbors):
+    def __init__(self, n_neighbors = 5):
         self.n_neighbors = n_neighbors
 
     def fit(self, X_train, y_train):
