@@ -7,6 +7,8 @@ soup = BeautifulSoup(urls, 'html.parser')
 
 cities = soup.find_all("city")
 data = soup.find_all("data")
+dates = soup.find("tmef")
+print(dates.string)
 
 for i in range(len(cities)):
     print(f'{cities[i].string}의 중기 예보 첫 번째 날씨는 {data[i*13].find("wf").string}입니다.')
