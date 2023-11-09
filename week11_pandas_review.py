@@ -8,12 +8,6 @@ df2 = pd.DataFrame(
     ], index=[1,2,3,4],
     columns=["KOR", "ENG", "MAT"]
 )
-#print(df2.describe())
-print(df2.mean())
-
-print(df2.query('KOR>=95 and ENG>=95'))
-
-def scale_score(n):
-    return n+1
-df2 = df2.apply(scale_score)
+print(df2)
+df2 = df2.apply(lambda n : n+1)
 print(df2)
