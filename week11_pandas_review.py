@@ -1,31 +1,32 @@
 import pandas as pd
-#dictionary
-df1 = pd.DataFrame(
-    {
-        "KOR": [99,91,100],
-        "ENG": [89,98,97],
-        "MAT": [100,98,85]
-    }, index=[1,2,3]
-)
-#print(df1)
-#list
 df2 = pd.DataFrame(
     [
         [99,89,100],
         [91,98,98],
-        [100,97,85]
-    ], index=[1,2,3],
+        [100,97,85],
+        [83,100,94]
+    ], index=[1,2,3,4],
     columns=["KOR","ENG","MAT"]
 )
-#print(df2)
 print(df2)
-# df2 = pd.melt(df2)
-# print(df2)
+df2_copy = df2.iloc[:,[0,2]]
+print(df2_copy)
+
+df3_copy = df2.loc[:,['KOR', 'MAT']]
+print(df3_copy)
+
+df4_copy = df2.loc[:,'KOR':'MAT']
+print(df4_copy)
+
 df2 = pd.melt(df2)\
     .rename(columns={
     'variable' : 'subject',
     'value' : 'score'})\
-    .query('score >= 90')
+    .query('score >= 90')\
+    .sort_values('score', ascending=False)
 print(df2)
-print(df1)
-print(df1.sort_values('MAT', ascending=False))
+
+print(df2.iloc[:,[1]])
+
+
+
