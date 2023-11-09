@@ -7,7 +7,7 @@ df1 = pd.DataFrame(
         "MAT": [100,98,85]
     }, index=[1,2,3]
 )
-print(df1)
+#print(df1)
 #list
 df2 = pd.DataFrame(
     [
@@ -17,4 +17,11 @@ df2 = pd.DataFrame(
     ], index=[1,2,3],
     columns=["KOR","ENG","MAT"]
 )
+#print(df2)
+print(df2)
+# df2 = pd.melt(df2)
+# print(df2)
+df2 = pd.melt(df2).rename(columns={
+    'variable' : 'subject',
+    'value' : 'score'}).query('score >= 90')
 print(df2)
