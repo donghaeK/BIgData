@@ -21,7 +21,11 @@ df2 = pd.DataFrame(
 print(df2)
 # df2 = pd.melt(df2)
 # print(df2)
-df2 = pd.melt(df2).rename(columns={
+df2 = pd.melt(df2)\
+    .rename(columns={
     'variable' : 'subject',
-    'value' : 'score'}).query('score >= 90')
+    'value' : 'score'})\
+    .query('score >= 90')
 print(df2)
+print(df1)
+print(df1.sort_values('MAT', ascending=False))
