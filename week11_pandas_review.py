@@ -9,24 +9,11 @@ df2 = pd.DataFrame(
     columns=["KOR","ENG","MAT"]
 )
 print(df2)
-df2_copy = df2.iloc[:,[0,2]]
-print(df2_copy)
+#'KOR', 'MAT' column 추출 KOR>=95
+df_copy = df2.loc[df2['KOR'] >= 95, ['KOR', 'MAT']]
+print(df_copy)
+#1번학생의 100점을 뽑을때
+print(df2.at[1,'MAT'])
 
-df3_copy = df2.loc[:,['KOR', 'MAT']]
-print(df3_copy)
-
-df4_copy = df2.loc[:,'KOR':'MAT']
-print(df4_copy)
-
-df2 = pd.melt(df2)\
-    .rename(columns={
-    'variable' : 'subject',
-    'value' : 'score'})\
-    .query('score >= 90')\
-    .sort_values('score', ascending=False)
-print(df2)
-
-print(df2.iloc[:,[1]])
-
-
+print(df2.iat[0,2])
 
