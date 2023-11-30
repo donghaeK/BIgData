@@ -15,12 +15,15 @@ titanic = sns.load_dataset('titanic')
 # print(male_survived, male_count, female_survived, female_count)
 # print(male_survived/male_count , female_survived/female_count)
 
+# first_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 1)]['survived'].count()
+# second_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 2)]['survived'].count()
+# third_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 3)]['survived'].count()
+# print(first_survived, second_survived, third_survived)
+#
+# pclass_survived = titanic.groupby('pclass')['survived'].sum()
+# print(pclass_survived)
+
 #print(titanic.head(10))
-first_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 1)]['survived'].count()
-second_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 2)]['survived'].count()
-third_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 3)]['survived'].count()
-print(first_survived, second_survived, third_survived)
+teenager_survived = titanic.groupby(pd.cut(titanic['age'], bins=[0,10,20,30,40,50,60,70,80]))['survived'].sum()
 
-pclass_survived = titanic.groupby('pclass')['survived'].sum()
-print(pclass_survived)
-
+print(teenager_survived)
