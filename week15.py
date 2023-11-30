@@ -1,4 +1,5 @@
 import seaborn as sns
+import matplotlib.pyplot as plt
 import pandas as pd
 
 titanic = sns.load_dataset('titanic')
@@ -19,11 +20,24 @@ titanic = sns.load_dataset('titanic')
 # second_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 2)]['survived'].count()
 # third_survived = titanic[(titanic['survived'] == 1) & (titanic['pclass'] == 3)]['survived'].count()
 # print(first_survived, second_survived, third_survived)
-#
 # pclass_survived = titanic.groupby('pclass')['survived'].sum()
 # print(pclass_survived)
 
-#print(titanic.head(10))
-teenager_survived = titanic.groupby(pd.cut(titanic['age'], bins=[0,10,20,30,40,50,60,70,80]))['survived'].sum()
+#teenager_survived = titanic.groupby(pd.cut(titanic['age'], bins=[0,10,20,30,40,50,60,70,80]))['survived'].sum()
+#print(teenager_survived)
 
-print(teenager_survived)
+
+#사망자와 생존자 시각화
+titanic.dropna()
+survived_ages = titanic[titanic['survived'] == 1]['age'].dropna()
+dead_ages = titanic[titanic['survived'] == 0]['age'].dropna()
+print(survived_ages, dead_ages)
+
+plt.hist(survived_ages, bins=20, label='survived',alpha=0.3)
+plt.hist(dead_ages, bins=20, label='dead', alpha=0.5)
+plt.xlabel('Age')
+plt.ylabel('Count')
+plt.legend()
+plt.plot()
+plt.show()
+
